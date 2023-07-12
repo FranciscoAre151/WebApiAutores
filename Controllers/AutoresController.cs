@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Controllers.Entidades;
+using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
@@ -9,14 +10,16 @@ namespace WebApplication1.Controllers
     public class AutoresController : ControllerBase
     {
         private readonly ApplicationDbContext context;
+        private readonly IServicio servicio;
 
-        public AutoresController(ApplicationDbContext context)
+        public AutoresController(ApplicationDbContext context, IServicio servicio)
         {
             this.context = context;
         }
         [HttpGet]
         public async Task<ActionResult<List<Autor>>> Get()
         {
+            servicio.RealizarTarea();
             return await context.Autores.Include(x => x.Libros).ToListAsync();
         }
 

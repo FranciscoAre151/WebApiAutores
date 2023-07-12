@@ -7,7 +7,9 @@ namespace WebApplication1.Controllers.Entidades
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="El nombre es requerido")][PrimeraLetraMayuscula] public string Nombre { get; set; }    
+        [Required(ErrorMessage ="El nombre es requerido")]
+        [PrimeraLetraMayuscula] 
+        public string Nombre { get; set; }    
         public List<Libro> Libros { get; set; }
 
     }

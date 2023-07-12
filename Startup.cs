@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using WebApplication1.Controllers;
+using WebApplication1.Services;
 
 namespace WebApplication1
 {
@@ -18,6 +20,9 @@ namespace WebApplication1
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddDbContext<ApplicationDbContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
+
+            services.AddTransient<IServicio, ServicioA>();
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
         }
